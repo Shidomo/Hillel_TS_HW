@@ -1,4 +1,4 @@
-/node_modules
+node_modules
 .architect
 bootstrap.css
 bootstrap.js
