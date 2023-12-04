@@ -13,13 +13,23 @@ enum BadgeTypesEnum {
 	MONO = 'mono'
 }
 
+type Grade = {
+	workName:string
+	mark:boolean
+}
+
+type Visit = {
+	lesson:string,
+	present:boolean
+}
+
 type BadgeSizeType = keyof typeof BadgeSize;
 type PrintType = keyof typeof Print;
-
+type BadgeKeyType = `${BadgeSizeType}_${PrintType}`
 
 class Student {
-	badgeTypeMap:Map<string,BadgeTypesEnum> = new Map<string,  BadgeTypesEnum>([
-		['single_fast', BadgeTypesEnum.COLOR],
+	badgeTypeMap = new Map<BadgeKeyType,  BadgeTypesEnum>([
+		["single_fast", BadgeTypesEnum.COLOR],
 		['single_standart', BadgeTypesEnum.COLOR],
 		['double_fast', BadgeTypesEnum.MONO],
 		['double_standart', BadgeTypesEnum.MONO]
@@ -28,8 +38,8 @@ class Student {
 	private _firstName : string;
 	private _lastName : string;
 	private _birthYear : number;
-	private _grades:{workName:string;mark:boolean}[] = []; // Опишите, как объект у которого есть поле workName и mark(оценка может быть выполненно или нет)
-	private _visits:{ lesson: string; present: boolean }[] = []; // Опишите, как объект у которого есть поле lesson (любое имя) и present
+	private _grades:Grade[] = []; // Опишите, как объект у которого есть поле workName и mark(оценка может быть выполненно или нет)
+	private _visits:Visit[] = []; // Опишите, как объект у которого есть поле lesson (любое имя) и present
 
 	get fullName():string {
 		return `${this._lastName} ${this._firstName}`;
