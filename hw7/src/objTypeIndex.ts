@@ -41,13 +41,8 @@ interface ExtendedInterface extends BaseInterface {
 }
 
 class ForInterface implements ExtendedInterface {
-  // Властивості з BaseInterface
   [key: string]: string;
-
-  // Властивість з ExtendedInterface
   anyProperty: string;
-
-  // Додаткові властивості для класу ForInterface
   name: string;
 
   constructor(name: string, anyProperty: string) {
