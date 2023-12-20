@@ -100,54 +100,42 @@ funcOrNot(myFunc());
 
 //Створіть класи з ієрархією успадкування і потім напишіть функцію, яка використовує захисник типу для звуження типу об'єктів, що базуються на цій ієрархії.
 
-interface Vehicle {
-  brand: string;
+class Animal {
+  constructor(public species: string) {}
 }
 
-interface Car extends Vehicle {
-  model: string;
-}
-
-interface Bicycle extends Vehicle {
-  type: string;
-}
-
-class VehicleImplementation implements Vehicle {
-  constructor(public brand: string) {}
-}
-
-class CarImplementation extends VehicleImplementation implements Car {
+class Mammal extends Animal {
   constructor(
-    brand: string,
-    public model: string,
+    species: string,
+    public sound: string,
   ) {
-    super(brand);
+    super(species);
   }
 }
 
-class BicycleImplementation extends VehicleImplementation implements Bicycle {
+class Bird extends Animal {
   constructor(
-    brand: string,
-    public type: string,
+    species: string,
+    public wingspan: number,
   ) {
-    super(brand);
+    super(species);
   }
 }
 
-function processVehicle(vehicle: Vehicle): void {
-  if ("model" in vehicle) {
-    const car = vehicle as Car;
-    console.log(`Это автомобиль: ${car.brand} ${car.model}`);
-  } else if ("type" in vehicle) {
-    const bicycle = vehicle as Bicycle;
-    console.log(`Это велосипед: ${bicycle.brand} ${bicycle.type}`);
+function processAnimal(animal: Animal): void {
+  if (animal instanceof Mammal) {
+    console.log(`This is a mammal: ${animal.species}, Sound: ${animal.sound}`);
+  } else if (animal instanceof Bird) {
+    console.log(
+      `This is a bird: ${animal.species}, Wingspan: ${animal.wingspan}`,
+    );
   } else {
-    console.log("Неизвестный тип транспортного средства");
+    console.log("Unknown animal type");
   }
 }
 
-const myCar = new CarImplementation("Toyota", "Camry");
-const myBicycle = new BicycleImplementation("Giant", "Mountain");
+const lion = new Mammal("Lion", "Roar");
+const eagle = new Bird("Eagle", 2);
 
-processVehicle(myCar);
-processVehicle(myBicycle);
+processAnimal(lion);
+processAnimal(eagle);
