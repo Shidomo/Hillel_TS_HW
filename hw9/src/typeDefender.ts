@@ -9,7 +9,7 @@ console.log(filterNum);
 
 const strArr = ["apple", "banana", "orange", "grape"];
 const filterStr = filterArray(strArr, (str) => str.length > 5);
-console.log(filterStr); // ["banana", "orange"]
+console.log(filterStr);
 
 class Stack<T> {
   private items: T[] = [];
