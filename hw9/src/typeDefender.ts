@@ -4,11 +4,14 @@ function filterArray<T>(array: T[], condition: (e: T) => boolean): T[] {
 
 const numArr = [1, 2, "3", "4", 5, 6];
 
-const filterNum = filterArray(numArr, (num) => typeof num === "number");
+const filterNum: (string | number)[] = filterArray(
+  numArr,
+  (num: string | number) => typeof num === "number",
+);
 console.log(filterNum);
 
 const strArr = ["apple", "banana", "orange", "grape"];
-const filterStr = filterArray(strArr, (str) => str.length > 5);
+const filterStr: string[] = filterArray(strArr, (str) => str.length > 5);
 console.log(filterStr);
 
 class Stack<T> {
@@ -26,7 +29,7 @@ class Stack<T> {
     return this.items[this.items.length - 1];
   }
 }
-const stack = new Stack<number>();
+const stack: Stack<number> = new Stack<number>();
 stack.push(3);
 stack.push(5);
 console.log(stack.peek());
@@ -48,7 +51,7 @@ class Dictionary<K, V> {
   }
 }
 
-const disc = new Dictionary<string, number>();
+const disc: Dictionary<string, number> = new Dictionary<string, number>();
 disc.set("one", 1);
 disc.set("two", 2);
 console.log(disc.get("one"));
