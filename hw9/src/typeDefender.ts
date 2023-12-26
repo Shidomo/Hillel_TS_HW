@@ -6,12 +6,15 @@ const numArr = [1, 2, "3", "4", 5, 6];
 
 const filterNum: (string | number)[] = filterArray(
   numArr,
-  (num: string | number) => typeof num === "number",
+  (num: string | number): boolean => typeof num === "number",
 );
 console.log(filterNum);
 
 const strArr = ["apple", "banana", "orange", "grape"];
-const filterStr: string[] = filterArray(strArr, (str) => str.length > 5);
+const filterStr: string[] = filterArray(
+  strArr,
+  (str: string): boolean => str.length > 5,
+);
 console.log(filterStr);
 
 class Stack<T> {
