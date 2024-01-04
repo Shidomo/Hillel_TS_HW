@@ -58,7 +58,7 @@ const uppercasePersonKeys: UpperCaseKeys<{
   AGE: 40,
 };
 
-const personDescriptor: ObjectToPropertyDescriptor<{
+/*const personDescriptor: ObjectToPropertyDescriptor<{
   name: string;
 }> = {
   name: {
@@ -77,4 +77,32 @@ for (const key in personDescriptor) {
 console.log(person);
 
 person.name = "newOlolo";
-console.log(person);
+console.log(person);*/
+
+function convertToObjectToPropertyDescriptor<T>(
+  obj: T,
+): ObjectToPropertyDescriptor<T> {
+  const result: ObjectToPropertyDescriptor<T> = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result[key] = {
+        value: obj[key],
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      };
+    }
+  }
+
+  return result;
+}
+
+const inputObject = {
+  name: "John",
+  age: 25,
+  city: "New York",
+};
+
+const propertyDescriptors = convertToObjectToPropertyDescriptor(inputObject);
+console.log(propertyDescriptors);
